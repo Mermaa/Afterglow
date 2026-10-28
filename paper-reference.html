@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Afterglow — paper reference</title>
+<style>
+  /* Reference for ONE sheet of paper lit by ONE light.
+     The whole lighting model is: paper at full original colour + one black overlay with a soft hole.
+     No brightness filters, no masks on the paper, no glow layer, no blend modes. */
+  :root{
+    --x:50vw; --y:50vh;          /* light position, set by script */
+    --r:260px;                   /* light radius */
+  }
+  html,body{margin:0;height:100%;background:#000;overflow:hidden}
+  body{cursor:crosshair;touch-action:none}
+
+  /* 1. The paper: original image, untouched. */
+  .sheet{
+    position:absolute;left:50%;top:50%;
+    width:min(440px,88vw);aspect-ratio:1/1;
+    transform:translate(-50%,-50%) rotate(-2.5deg);
+    background:url('assets/paper-transparent.png') center/contain no-repeat;
+    filter:drop-shadow(3px 6px 10px rgba(0,0,0,.55));
+  }
+  /* 2. Ink printed on the paper. Plain colour. */
+  .sheet small,.sheet p{position:absolute;left:19%;right:15%;margin:0;font-family:'Courier New',Courier,monospace}
+  .sheet small{top:15%;font-size:11px;font-style:italic;letter-spacing:.5px;color:rgba(70,58,44,.75);transform:rotate(-1.5deg)}
+  .sheet p{top:21%;font-size:18px;line-height:1.55;letter-spacing:-.3px;color:#2b241c;white-space:pre-line}
+
+  /* 3. The darkness: one overlay above everything, with a soft hole where the light is.
+        Centre ≈ 8% dark (paper reads at its true cream), edges fall to black. */
+  .dark{
+    position:fixed;inset:0;pointer-events:none;
+    background:radial-gradient(circle var(--r) at var(--x) var(--y),
+      rgba(0,0,0,.08) 0%,
+      rgba(0,0,0,.25) 35%,
+      rgba(0,0,0,.7) 70%,
+      #000 100%);
+  }
+  /* Optional warmth: a very faint tint inside the light only. Remove if not wanted. */
+  .warm{
+    position:fixed;inset:0;pointer-events:none;
+    background:radial-gradient(circle calc(var(--r)*.8) at var(--x) var(--y),rgba(255,214,150,.06),transparent 70%);
+  }
+  @media (max-width:700px){ :root{--r:200px} .sheet p{font-size:16px} }
+</style>
+</head>
+<body>
+  <div class="sheet" role="img" aria-label="An old sheet of paper. 06 years. Look! My tooth came out. Do you think the fairy knows we moved?">
+    <small>06 years</small>
+    <p>Look! My tooth came out.
+Do you think the fairy knows we moved?</p>
+  </div>
+  <div class="warm" aria-hidden="true"></div>
+  <div class="dark" aria-hidden="true"></div>
+
+<script>
+  // Light follows the pointer with a little lag. Only two CSS variables change per frame.
+  const root=document.documentElement;
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let tx=innerWidth*.5, ty=innerHeight*.5, x=tx, y=ty;
+  addEventListener('pointermove',e=>{tx=e.clientX;ty=e.clientY});
+  addEventListener('pointerdown',e=>{tx=e.clientX;ty=e.clientY});
+  (function frame(){
+    const k=reduce?1:.12;
+    x+=(tx-x)*k; y+=(ty-y)*k;
+    root.style.setProperty('--x',x+'px');
+    root.style.setProperty('--y',y+'px');
+    requestAnimationFrame(frame);
+  })();
+</script>
+</body>
+</html>

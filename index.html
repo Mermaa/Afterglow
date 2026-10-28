@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#090b0b">
+<title>Afterglow</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<header><a class="brand" href="./">afterglow<span>MEMORY / LIGHT</span></a></header>
+<main id="space" aria-label="Move your pointer or finger to find memories. Arrow keys move the light; Space pauses drifting."><div id="fragments"></div><div id="light"></div><div id="companion"></div>
+<div id="shared" aria-hidden="true"></div><div id="announcement" class="sr-only" role="status" aria-live="polite"></div><div id="hint">Move slowly. Something is still here.</div>
+</main>
+<button id="menu" aria-controls="tools" aria-expanded="false">Controls</button><footer id="tools"><div class="status"><i></i><span id="state">Waiting for a light</span></div><div class="controls"><button id="about">Help</button><button id="sound" aria-pressed="false">Sound <span>Off</span></button><button id="together" aria-pressed="false">Companion light <span>＋</span></button><button id="leave">Leave a memory <span>↗</span></button></div><span class="footer-word">WHAT REMAINS OF US</span></footer>
+<dialog id="info" aria-labelledby="info-title"><button class="close" aria-label="Close">×</button><div class="eyebrow">ABOUT AFTERGLOW</div><h2 id="info-title">Even in forgetting,<br>someone stays.</h2><p>An exploration of memory, forgetting, and companionship. Fragments drift and leave traces. Where two lights meet, a memory can become whole for a moment.</p><p>This is an artistic metaphor, not a representation of every experience of dementia. The original memories are fictional. The companion light is simulated locally, not an online visitor.</p><p>Explore with your pointer, touch, or arrow keys. Tab reveals the controls. The Controls button also opens them. Space pauses drifting; Esc closes this window. Sound is off by default.</p></dialog>
+<dialog id="write" aria-labelledby="write-title"><button class="close" aria-label="Close">×</button><div class="eyebrow">LEAVE A LITTLE LIGHT</div><h2 id="write-title">What would you keep?</h2><p>A small, ordinary moment is enough. It will stay on this device, waiting in the dark.</p><form id="memory-form"><label for="memory">A memory</label><textarea id="memory" maxlength="100" required placeholder="The kitchen smelled of toast that morning."></textarea><button class="submit" type="submit">Leave it in the light ↗</button></form></dialog>
+<section id="ending-invite" hidden aria-label="Leave a little light"><p>Leave a little light<br>for the next person.</p><button id="ending-leave">Leave a memory</button></section>
+<script src="script.js"></script>
+</body></html>
