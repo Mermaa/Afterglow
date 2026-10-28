@@ -1,5 +1,7 @@
 # Afterglow · Memory / Light
 
+**[Experience Afterglow online →](https://mermaa.github.io/Afterglow/)**
+
 An interactive web artwork about memory, forgetting, and companionship, inspired by the subject of dementia.
 
 Explore darkness with a cursor-controlled light. Approach floating old papers to bring memories forward; words, ages, and recollections may change on return. Brief moments of clarity restore warmth and completeness. A simulated companion light can help stabilize a memory. The ending reverses the search: a final memory comes to meet the visitor.
@@ -46,7 +48,7 @@ The companion light is simulated locally; there is no real-time multiplayer back
 
 The ending begins after six distinct memories have fully revealed, or after four minutes of exploration, once the current reveal and any dialog have finished. The final age-83 memory is reserved for that ending.
 
-A local server is recommended over opening index.html directly. Uploading this repository does not automatically deploy the website or enable GitHub Pages.
+A local server is recommended over opening index.html directly. The live website is deployed through GitHub Pages from the `main` branch.
 
 ## Development status
 
